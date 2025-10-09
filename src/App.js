@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BookList from './components/BookList';
 import Header from './Header';
+import './components.css'; // Styles for BookCard, ProgressBar, etc.
 
 function App() { 
   const [books, setBooks] = useState([]);

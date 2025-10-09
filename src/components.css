@@ -1,0 +1,46 @@
+/* src/components.css */
+
+/* BookCard Styles */
+.book-card {
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 16px;
+  box-shadow: var(--box-shadow);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.book-card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.book-card h3 {
+  margin-top: 0;
+  color: var(--font-color);
+}
+
+.book-card p {
+  color: var(--dark-gray);
+  font-size: 0.9em;
+  margin: 4px 0;
+}
+
+.book-card-status {
+  font-weight: bold;
+  margin: 12px 0;
+}
+
+/* ProgressBar Styles */
+.progress-bar-container {
+  width: 100%;
+  background-color: var(--light-gray);
+  border-radius: 4px;
+  overflow: hidden;
+  height: 10px;
+}
+
+.progress-bar-filled {
+  height: 100%;
+  background-color: var(--secondary-color);
+  transition: width 0.5s ease-in-out;
+}
