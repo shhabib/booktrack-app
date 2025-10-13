@@ -1,17 +1,26 @@
 import React from 'react';
 import ProgressBar from './ProgressBar';
 import PropTypes from 'prop-types';
+import { STATUSES } from '../data/constants';
 
-function BookCard({ book }) {
+function BookCard({ book, onStatusUpdate }) {
   return (
     <div className="book-card">
       <h3>{book.title}</h3>
       <p>Author: {book.author}</p>
       <p>Year: {book.year}</p>
       <p>Genre: {book.genre}</p>
-      <div className="book-card-status">
-        Status: <span>{book.status}</span>
-      </div>
+      <select
+        className="status-select"
+        value={book.status}
+        onChange={(e) => onStatusUpdate(book.id, e.target.value)}
+      >
+        {Object.values(STATUSES).map(statusInfo => (
+          <option key={statusInfo.id} value={statusInfo.id}>
+            {statusInfo.label}
+          </option>
+        ))}
+      </select>
       <ProgressBar progress={book.progress} totalPages={book.totalPages} />
     </div>
   );
@@ -30,4 +39,5 @@ BookCard.propTypes = {
     progress: PropTypes.number,
     totalPages: PropTypes.number,
   }).isRequired,
+  onStatusUpdate: PropTypes.func.isRequired,
 };
