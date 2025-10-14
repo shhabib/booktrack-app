@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BookList from './components/BookList';
+import { initialBooks } from './data/initialBooks'; // Import static data
 import Header from './Header';
 import SearchBar from './components/SearchBar';
 import AddBookForm from './components/AddBookForm';
@@ -11,10 +12,16 @@ function App() {
   const [isFormVisible, setIsFormVisible] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:3001/books')
-      .then(response => response.json())
-      .then(data => setBooks(data))
-      .catch(error => console.error("Error fetching data:", error));
+    if (process.env.NODE_ENV === 'development') {
+      // Only fetch from json-server in development
+      fetch('http://localhost:3001/books')
+        .then(response => response.json())
+        .then(data => setBooks(data))
+        .catch(error => console.error("Error fetching data:", error));
+    } else {
+      // In production, use the static data
+      setBooks(initialBooks);
+    }
   }, []);
 
   const handleAddBook = (newBookData) => {
